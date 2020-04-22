@@ -14,6 +14,8 @@
 
         <!-- Styles -->
         <link href="{{ asset('css/tailwind.css') }}" rel="stylesheet">
+
+        @livewireStyles
     </head>
 
     <body class="sans bg-gray-200 text-gray-700">
@@ -22,29 +24,47 @@
                 <div class="flex flex-col w-56 bg-white border border-gray-300">
                     <a href="#" class="mx-auto py-4 text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline">{{ config('app.name', 'Laravel') }}</a>
 
-                    <a href="#" class="block border-r-2 border-green-500 text-md font-semibold text-gray-800 px-4 py-2 hover:bg-gray-200">
+                    <a href="{{ route('dashboard') }}" class="block border-r-2 text-md text-gray-800 px-4 py-2 hover:bg-gray-200 @if(Route::currentRouteName() == 'dashboard') border-green-500 font-semibold @else border-transparent @endif">
                         <div class="flex">
-                        <svg class="text-green-500 stroke-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 12L5 10M5 10L12 3L19 10M5 10V20C5 20.5523 5.44772 21 6 21H9M19 10L21 12M19 10V20C19 20.5523 18.5523 21 18 21H15M9 21C9.55228 21 10 20.5523 10 20V16C10 15.4477 10.4477 15 11 15H13C13.5523 15 14 15.4477 14 16V20C14 20.5523 14.4477 21 15 21M9 21H15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        <svg class="stroke-current @if(Route::currentRouteName() == 'dashboard') text-green-500 @else text-gray-500 @endif" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 12L5 10M5 10L12 3L19 10M5 10V20C5 20.5523 5.44772 21 6 21H9M19 10L21 12M19 10V20C19 20.5523 18.5523 21 18 21H15M9 21C9.55228 21 10 20.5523 10 20V16C10 15.4477 10.4477 15 11 15H13C13.5523 15 14 15.4477 14 16V20C14 20.5523 14.4477 21 15 21M9 21H15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                         <span class="ml-4">Dashboard</span>
                         </div>
                     </a>
 
-                    {{-- <a href="#" class="block bg-gray-200 font-semibold text-sm text-gray-800 pl-16 pr-4 py-2">General</a>
-                    <a href="#" class="block bg-gray-200 text-sm text-gray-800 pl-16 pr-4 py-2">General</a> --}}
+                    {{-- <div x-data="{ isOpen: false }"> --}}
+                        <a href="{{ route('clients.index') }}" class="block border-r-2 text-md text-gray-800 px-4 py-2 hover:bg-gray-200 @if(Route::currentRouteName() == 'clients.index') border-green-500 font-semibold @else border-transparent @endif">
+                            <div class="flex items-center">
+                                <svg class="stroke-current @if(Route::currentRouteName() == 'clients.index') text-green-500 @else text-gray-500 @endif" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 4.35418C12.7329 3.52375 13.8053 3 15 3C17.2091 3 19 4.79086 19 7C19 9.20914 17.2091 11 15 11C13.8053 11 12.7329 10.4762 12 9.64582M15 21H3V20C3 16.6863 5.68629 14 9 14C12.3137 14 15 16.6863 15 20V21ZM15 21H21V20C21 16.6863 18.3137 14 15 14C13.9071 14 12.8825 14.2922 12 14.8027M13 7C13 9.20914 11.2091 11 9 11C6.79086 11 5 9.20914 5 7C5 4.79086 6.79086 3 9 3C11.2091 3 13 4.79086 13 7Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                                <span class="ml-4 flex-1">Clients</span>
+                                {{-- <div>
+                                    <template x-if="!isOpen">
+                                        <svg class="w-6 h-6 text-gray-500 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none">
+                                            <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </template>
+                                    <template x-if="isOpen">
+                                        <svg class="w-6 h-6 text-gray-500 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none">
+                                            <path d="M5 15l7-7 7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </template>
+                                </div> --}}
+                            </div>
+                        </a>
 
-                    <a href="#" class="block border-r-2 border-transparent text-md text-gray-800 px-4 py-2 hover:bg-gray-200">
-                        <div class="flex">
-                            <svg class="text-gray-500 stroke-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 4.35418C12.7329 3.52375 13.8053 3 15 3C17.2091 3 19 4.79086 19 7C19 9.20914 17.2091 11 15 11C13.8053 11 12.7329 10.4762 12 9.64582M15 21H3V20C3 16.6863 5.68629 14 9 14C12.3137 14 15 16.6863 15 20V21ZM15 21H21V20C21 16.6863 18.3137 14 15 14C13.9071 14 12.8825 14.2922 12 14.8027M13 7C13 9.20914 11.2091 11 9 11C6.79086 11 5 9.20914 5 7C5 4.79086 6.79086 3 9 3C11.2091 3 13 4.79086 13 7Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                            <span class="ml-4">Clients</span>
-                        </div>
-                    </a>
+                        {{-- <div x-show="isOpen">
+                            <a href="#" class="block bg-gray-200 font-semibold text-sm text-gray-800 pl-12 pr-4 py-2">QMS Commudesk</a>
+                            <a href="#" class="block bg-gray-200 text-sm text-gray-800 pl-12 pr-4 py-2">Simedarby</a>
+                        </div> --}}
+                    {{-- </div> --}}
+
+                    
                 </div>
                 <div class="flex-1 bg-gray-200 min-h-screen">
                     <div class="flex flex-col">
                         <div class="flex justify-end bg-white px-4 py-2 shadow-lg">
                             <div class="relative" x-data="{ isOpen: false }">
                                 <a href="#" @click.prevent="isOpen = !isOpen">
-                                    <img src="{{ asset('storage/uploads/avatars/img_0222.jpg') }}" alt="avatar" class="rounded-full h-8 w-8">
+                                    <img src="{{ asset('storage/uploads/avatars/img_0222.jpg') }}" alt="avatar" class="rounded-full h-8 w-8 object-cover">
                                 </a>
 
                                 <div x-show="isOpen" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg z-20">
@@ -91,7 +111,7 @@
             </div>
         @else
             <div class="flex items-center bg-white shadow px-4 py-4">
-                <a href="{{ route('home') }}" class="text-lg tracking-wider flex-1 text-gray-900">{{ config('app.name', 'Laravel') }}</a>
+                <a href="{{ route('welcome') }}" class="text-lg tracking-wider flex-1 text-gray-900">{{ config('app.name', 'Laravel') }}</a>
                 <div class="flex">
                     <a href="{{ route('login') }}" class="text-gray-900 hover:text-gray-600">Login</a>
                     <a href="{{ route('register') }}" class="ml-4 text-gray-900 hover:text-gray-600">Register</a>
@@ -102,5 +122,7 @@
                 @yield('content')
             </div>
         @endauth
+
+        @livewireScripts
     </body>
 </html>
