@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class ClientController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -43,7 +48,7 @@ class ClientController extends Controller
             'credential' => 'required|file|mimetypes:application/json'
         ]);
 
-        $file_path = $request->file('credential')->store('public/uploads/google_credentials');
+        $file_path = $request->file('credential')->store('analytics');
 
         Client::create([
             'name' => $request->name,
@@ -52,7 +57,8 @@ class ClientController extends Controller
             'google_project_id' => $request->projectId,
             'google_bq_dataset_name' => $request->bqDataset,
             'google_credential' => $file_path,
-            'google_credential_file_name' => $request->file('credential')->getClientOriginalName()
+            'google_credential_file_name' => $request->file('credential')->getClientOriginalName(),
+            'status' => true,
         ]);
 
         return redirect()->route('clients.index');
@@ -109,8 +115,12 @@ class ClientController extends Controller
      * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Client $client)
+    public function destroy(Request $request, Client $client)
     {
-        //
+        if ($request->name === $client->name) {
+            $client->delete();
+        }
+
+        return redirect()->route('clients.index');
     }
 }

@@ -22,6 +22,7 @@ class CreateClientsTable extends Migration
             $table->string('google_credential_file_name')->nullable();
             $table->string('google_project_id')->nullable();
             $table->string('google_bq_dataset_name')->nullable();
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }

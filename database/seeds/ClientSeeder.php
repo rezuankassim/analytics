@@ -15,7 +15,7 @@ class ClientSeeder extends Seeder
         Client::create([
             'name' => 'QMS',
             'display_name' => 'QMS Commudesk',
-            'google_credential' => storage_path('public/uploads/google_credentials/qms-system-c8899-91450570ae3b.json'),
+            'google_credential' => 'uploads/google_credentials/qms-system-c8899-91450570ae3b.json',
             'google_credential_file_name' => 'qms-system-c8899-91450570ae3b.json',
             'google_project_id' => 'qms-system-c8899',
             'google_bq_dataset_name' => 'analytics_180826142'
@@ -24,7 +24,7 @@ class ClientSeeder extends Seeder
         Client::create([
             'name' => 'Simedarby',
             'display_name' => 'Simedarby',
-            'google_credential' => storage_path('public/uploads/google_credentials/sime-darby-4a39062f4c50.json'),
+            'google_credential' => 'uploads/google_credentials/sime-darby-4a39062f4c50.json',
             'google_credential_file_name' => 'sime-darby-4a39062f4c50.json',
             'google_project_id' => 'sime-darby',
             'google_bq_dataset_name' => 'analytics_180573853'

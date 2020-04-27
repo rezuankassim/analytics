@@ -4,12 +4,12 @@
 <div class="flex flex-col">
     <div class="px-6 py-6">
         <div class="flex items-center text-sm text-gray-500">
-            <div class="flex items-center hover:text-gray-600">
+            <div class="flex items-center hover:text-gray-700">
                 <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 <a href="{{ route('clients.index') }}" class="ml-2">Clients</a>
             </div>
             <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span class="text-green-500">Create New Client</span>
+            <span class="text-green-500">{{ $client->display_name }}</span>
         </div>
     </div>
 
@@ -196,37 +196,8 @@
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam inventore quae veritatis cumque cupiditate magni molestiae iure natus iste saepe.
                     </div>
                 </div>
-                
-                <div class="w-1/4 text-right">
-                    <button type="button" @click="isOpen = true" class="text-white bg-red-500 px-4 py-2 rounded hover:bg-red-600">Delete</button>
-                </div>
-            </div>
-        </div>
 
-        <div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center" x-show.transition.opacity="isOpen">
-            <div class="modal-overlay absolute w-full h-full bg-gray-500 opacity-50"></div>
-            
-            <div class="container mx-auto lg:px-32 z-50 rounded-lg overflow-y-auto px-8">
-                <div class="bg-white mx-auto w-2/4 rounded shadow" x-on:click.away="isOpen = false">
-                    <div class="flex items-center px-4 py-2">
-                        <span class="flex-1 text-lg text-gray-700 font-semibold">Are you absolutely sure?</span>
-                        <svg @click="isOpen = false" class="w-6 h-6 text-gray-500 stroke-current cursor-pointer hover:text-gray-700" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M6 18L18 6M6 6l12 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </div>
-                    <div class="modal-body px-4 py-2">
-                        <div class="text-gray-600 tracking-tight">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit inventore nulla eius quam alias eligendi ea repellat? Dicta, quis amet?
-                        </div>
-                        <div class="text-gray-600 tracking-tight my-2">
-                            Please type <span class="text-red-500 font-semibold">{{ $client->name }}</span> to confirm.
-                        </div>
-                        <form action="#" method="POST" x-data="{ name: '', correctName: '{{ $client->name }}'}">
-                            @csrf
-                            <input type="text" x-model="name" class="my-2 form-input bg-gray-200 block border border-transparent w-full pl-7 pr-12 text-sm leading-5 focus:bg-white focus:outline-none focus:shadow-none focus:border-green-500">
-
-                            <button :class="{ 'opacity-50 cursor-not-allowed': name !== correctName, 'hover:bg-red-600': name === correctName }" class="mb-2 w-full px-4 py-2 bg-red-500 text-white rounded">Confirm</button>
-                        </form>
-                    </div>
-                </div>
+                @livewire('delete-modal', [ 'client' => $client ])
             </div>
         </div>
     </div>

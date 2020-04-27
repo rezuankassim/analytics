@@ -36,44 +36,43 @@
                             Description
                         </th>
                         <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                            App ID
+                        </th>
+                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                             Created At
                         </th>
                         <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
                     </tr>
                 </thead>
                 <tbody class="bg-white">
-                    @if ($clients->count() === 0)
+                    @if ($subclients->count() === 0)
                         <tr>
-                            <td class="text-center px-6 py-4 whitespace-no-wrap border-b border-gray-200" colspan="4">
+                            <td class="text-center px-6 py-4 whitespace-no-wrap border-b border-gray-200" colspan="5">
                                 <span class="text-sm leading-5 font-medium text-green-500">Opps!</span>
                                 
                                 <span class="text-sm leading-5 text-gray-700">Looks like there is no record for you...</span>
                             </td>
                         </tr>
                     @else
-                        @foreach ($clients as $client)
+                        @foreach ($subclients as $subclient)
                             <tr>
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                    <div class="text-sm leading-5 font-medium text-gray-900">{{ $client->name }}</div>
-                                    <div class="text-sm leading-5 text-gray-500">{{ $client->display_name }}</div>
+                                    <div class="text-sm leading-5 font-medium text-gray-900">{{ $subclient->name }}</div>
+                                    <div class="text-sm leading-5 text-gray-500">{{ $subclient->display_name }}</div>
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-700">
-                                    {{ $client->description }}
+                                    {{ $subclient->description }}
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-700">
-                                    {{ $client->created_at->format('M d, Y') }}
+                                    {{ $subclient->created_at->format('M d, Y') }}
                                 </td>
 
                                 <td class="w-32 px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-                                    <a href="{{ route('clients.edit', $client->id) }}" class="text-green-500 hover:text-green-700">Edit</a>
-
-                                    <a href="{{ route('subclients.index', $client->id) }}" class="ml-2 text-green-500 hover:text-green-700">Subclient</a>
+                                    <a href="{{ route('subclients.edit', ['client' => $client->id, 'subclient' => $subclient->id]) }}" class="text-green-500 hover:text-green-700">Edit</a>
                                     
-                                    @if ($client->subclient->count() == 0)
-                                        <a href="{{ route('clients_analytics.index', $client->id) }}" class="ml-2 text-green-500 hover:text-green-700">Analytics</a>
-                                    @endif
+                                    <a href="{{ route('subclients_analytics.index', ['client' => $client->id, 'subclient' => $subclient->id]) }}" class="ml-2 text-green-500 hover:text-green-700">Analytics</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -92,7 +91,7 @@
                 </a>
             </div>
             <div class="flex-1 flex items-center justify-between">
-                {{ $clients->links() }}
+                {{ $subclients->links() }}
             </div>
         </div>
     </div>

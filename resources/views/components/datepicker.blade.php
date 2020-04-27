@@ -1,0 +1,1 @@
+<input wire:ignore type="text" name="date" id="date" x-data x-ref="date" x-init="$($refs.date).daterangepicker()" class="form-input px-2 pl-8 py-1 bg-gray-400 text-gray-800 placeholder-gray-600 border-1 border-transparent focus:bg-white focus:border-green-500 focus:outline-none focus:shadow-none" placeholder="Date">

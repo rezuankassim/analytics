@@ -8,16 +8,21 @@ use Illuminate\Support\Facades\Storage;
 
 class ClientCredentialController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function store(Request $request, Client $client)
     {
         $request->validate([
             'credential' => 'required|file|mimetypes:application/json'
         ]);
 
-        $file_path = $request->file('credential')->store('public/uploads/google_credentials');
+        $file_path = $request->file('credential')->store('analytics');
 
-        if (Storage::exists(storage_path($client->google_credential))) {
-            Storage::delete(storage_path($client->google_credential));
+        if (Storage::exists(storage_path('app/'.$client->google_credential))) {
+            Storage::delete(storage_path('app/'.$client->google_credential));
         }
 
         $client->update([

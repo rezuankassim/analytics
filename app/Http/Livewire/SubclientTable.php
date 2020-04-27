@@ -3,16 +3,22 @@
 namespace App\Http\Livewire;
 
 use App\Client;
+use App\Subclient;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class ClientTable extends Component
+class SubclientTable extends Component
 {
     use WithPagination;
 
     public $search = '';
     public $perPage = 10;
     public $client;
+
+    public function mount(Client $client)
+    {
+        $this->client = $client;
+    }
 
     public function clear()
     {
@@ -21,8 +27,8 @@ class ClientTable extends Component
 
     public function render()
     {
-        return view('livewire.client-table', [
-            'clients' => Client::where('name', 'like', '%'.$this->search.'%')->paginate($this->perPage)
+        return view('livewire.subclient-table', [
+            'subclients' => Subclient::where('name', 'like', '%'.$this->search.'%')->paginate($this->perPage)
         ]);
     }
 

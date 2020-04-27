@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Client;
+use Illuminate\Http\Request;
+use RezuanKassim\BQAnalytic\Analytic;
+
+class ClientAnalyticFilterController extends Controller
+{
+    public function update(Client $client, Request $request)
+    {
+        auth()->user()->analytic()->sync(
+            Analytic::whereIn('name', collect($request->input())->filter(function ($value) {
+                return $value === "1";
+            })->map(function ($value, $key) {
+                return str_replace('_', ' ', $key);
+            })->flatten(1)->toArray())->pluck('id')->toArray()
+        );
+
+        return redirect()->route('clients_analytics.index', $client->id);
+    }
+}
