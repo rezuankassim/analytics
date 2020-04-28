@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Client;
+use App\Subclient;
 use App\User;
 use Illuminate\Http\Request;
 use RezuanKassim\BQAnalytic\Analytic;
 
-class ClientAnalyticFilterController extends Controller
+class SubclientAnalyticFilterController extends Controller
 {
-    public function update(Client $client, Request $request)
+    public function update(Client $client, Subclient $subclient, Request $request)
     {
         $user = User::find(auth()->user()->id);
         $analytics = Analytic::whereIn('name', collect($request->input())->filter(function ($value) {
@@ -21,11 +22,11 @@ class ClientAnalyticFilterController extends Controller
         foreach($analytics as $analytic) {
             $user->analyticPreferences()->create([
                 'analytic_id' => $analytic->id,
-                'filterable_type' => get_class($client),
-                'filterable_id' => $client->id
+                'filterable_type' => get_class($subclient),
+                'filterable_id' => $subclient->id
             ]);
         }
 
-        return redirect()->route('clients_analytics.index', $client->id);
+        return redirect()->route('subclients_analytics.index', ['client' => $client, 'subclient' => $subclient]);
     }
 }

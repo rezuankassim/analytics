@@ -18,7 +18,7 @@
 
     <body class="sans bg-gray-200 text-gray-700">
         @auth
-            <div class="flex flex-row min-h-screen">
+            <div class="relative flex flex-row min-h-screen">
                 <div class="flex flex-col w-56 bg-white border border-gray-300">
                     <a href="#" class="mx-auto py-4 text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline">{{ config('app.name', 'Laravel') }}</a>
 
@@ -58,7 +58,7 @@
                     
                 </div>
                 <div class="flex-1 bg-gray-200 min-h-screen">
-                    <div class="flex flex-col">
+                    <div class="flex flex-col relative">
                         <div class="flex justify-end bg-white px-4 py-2 shadow-lg">
                             <div class="relative" x-data="{ isOpen: false }">
                                 <a href="#" @click.prevent="isOpen = !isOpen">
@@ -106,6 +106,23 @@
                         </div>
                     </div>
                 </div>
+
+                @if ($message = Session::get('success'))
+                    <div x-data="{ isOpen: true }">
+                        <div x-show="isOpen" class="mt-20 w-1/4 mr-6 py-2 px-4 flex absolute top-0 right-0 bg-green-200 text-green-700 rounded">
+                            <div>
+                                <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </div>
+                            <div class="flex-1 flex flex-wrap px-2 pr-6">
+                                {{ $message }}
+                            </div>
+                            <div @click="isOpen = false" class="cursor-pointer hover:text-green-900">
+                                <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M6 18L18 6M6 6l12 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+                
             </div>
         @else
             <div class="flex items-center bg-white shadow px-4 py-4">

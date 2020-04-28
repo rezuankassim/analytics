@@ -12,6 +12,14 @@
                 <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 <span>{{ $client->display_name }}</a>
             </div>
+            <div class="flex items-center hover:text-gray-700">
+                <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <a href="{{ route('subclients.index', ['client' => $client]) }}">Subclients</a>
+            </div>
+            <div class="flex items-center">
+                <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span>{{ $subclient->name }}</a>
+            </div>
             <div class="flex items-center">
                 <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 <span class="text-green-500">Analytics</span>

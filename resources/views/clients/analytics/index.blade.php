@@ -20,7 +20,7 @@
     </div>
 
     <div class="px-6 py-2 overflow-auto">
-        @livewire('analytic', ['client' => $client])
+        @livewire('analytic', ['client' => $client, 'subclient' => null])
     </div>
 </div>
 @endsection

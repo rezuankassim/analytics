@@ -1,7 +1,7 @@
 <div x-data="{ isOpen: false }">
     <div class="flex justify-end">
         <div class="flex items-center">
-            <button type="button" @click="isOpen = true" class="px-1 py-1 text-green-900 bg-green-500 rounded hover:bg-green-700">
+            <button type="button" @click="isOpen = true" class="px-1 py-1 text-green-700 bg-green-300 rounded hover:bg-green-500">
                 <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
             <div wire:ignore class="relative ml-2">
@@ -47,7 +47,7 @@
                     <div class="text-gray-600 tracking-tight">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit inventore nulla eius quam alias eligendi ea repellat? Dicta, quis amet?
                     </div>
-                    <form action="{{ route('clients_analytics_filter.update', $client->id) }}" method="POST">
+                    <form action="{{ $subclient ? route('subclients_analytics_filter.update', ['client' => $client, 'subclient' => $subclient]) : route('clients_analytics_filter.update', $client->id) }}" method="POST">
                         @csrf
                         @foreach ($analytics as $analytic)
                             <div class="my-2">

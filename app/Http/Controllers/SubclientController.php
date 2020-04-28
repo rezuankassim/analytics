@@ -30,6 +30,6 @@ class SubclientController extends Controller
 
         $client->subclient()->create($validated);
 
-        return redirect()->route('subclients.index', ['client' => $client]);
+        return redirect()->route('subclients.index', ['client' => $client])->with('success', 'A record has been created');
     }
 }

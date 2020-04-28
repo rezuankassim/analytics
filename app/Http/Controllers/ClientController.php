@@ -61,18 +61,7 @@ class ClientController extends Controller
             'status' => true,
         ]);
 
-        return redirect()->route('clients.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Client  $client
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Client $client)
-    {
-        //
+        return redirect()->route('clients.index')->with('success', 'A record has been created');
     }
 
     /**
@@ -106,7 +95,7 @@ class ClientController extends Controller
 
         $client->update($validated);
 
-        return redirect()->route('clients.edit', $client->id);
+        return redirect()->route('clients.edit', $client->id)->with('success', 'The record has been updated');
     }
 
     /**
@@ -121,6 +110,6 @@ class ClientController extends Controller
             $client->delete();
         }
 
-        return redirect()->route('clients.index');
+        return redirect()->route('clients.index')->with('success', 'The record has been deleted');
     }
 }

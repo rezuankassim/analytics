@@ -18,7 +18,7 @@ class Analytic extends Component
     private $end_date;
     public $subclient;
 
-    public function mount(Client $client, $subclient = null)
+    public function mount(Client $client, ?Subclient $subclient)
     {
         $this->client = $client;
         $this->date = Carbon::yesterday()->format('d/m/Y').' - '.Carbon::yesterday()->format('d/m/Y');
@@ -39,7 +39,7 @@ class Analytic extends Component
         return view('livewire.analytic', [
             'activeUsersByPlatformChart' => $this->activeUsersByPlatformChart(),
             'allEventWithEventCountChart' => $this->allEventWithEventCountChart(),
-            'user_analytic' => auth()->user()->analytic,
+            'user_analytic' => auth()->user()->analyticPreferences()->where('filterable_type', get_class($this->subclient ?? $this->client))->where('filterable_id', $this->subclient->id ?? $this->client->id)->get()->pluck('analytic'),
             'analytics' => BQAnalytics::all()
         ]);
     }
@@ -92,7 +92,7 @@ class Analytic extends Component
 
     protected function analytic($start_date, $end_date)
     {
-        return new BQAnalytic(auth()->user(), $start_date, $end_date, $this->client->name, $this->subclient->app_id ?? '');
+        return new BQAnalytic(auth()->user(), $start_date, $end_date, $this->client->name, $this->subclient->app_id ?? '', get_class($this->subclient ?? $this->client), $this->subclient->id ?? $this->client->id);
     }
 
     protected function activeUsersByPlatformChart()
