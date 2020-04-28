@@ -28,7 +28,7 @@ class SubclientTable extends Component
     public function render()
     {
         return view('livewire.subclient-table', [
-            'subclients' => Subclient::where('name', 'like', '%'.$this->search.'%')->paginate($this->perPage)
+            'subclients' => $this->client->subclient()->where('name', 'like', '%'.$this->search.'%')->paginate($this->perPage)
         ]);
     }
 

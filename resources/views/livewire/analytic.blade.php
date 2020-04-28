@@ -14,8 +14,7 @@
         @if ($user_analytic->contains('name', 'get active users by platform'))
             <div class="my-4 px-4 py-4 flex-grow bg-white shadow rounded" wire:ignore>
                 <div class="header">
-                    <h2 class="text-gray-700 font-lg font-semibold tracking-wider">Active Users by Platform 
-                        {{ $date }}</h2>
+                    <h2 class="text-gray-700 font-lg font-semibold tracking-wider">Active Users by Platform</h2>
                 </div>
                 <div class="content">
                     {{ $activeUsersByPlatformChart->container() }}
