@@ -30,7 +30,7 @@ Route::group([
     Route::get('/create', 'ClientController@create')->name('clients.create');
     Route::post('/', 'ClientController@store')->name('clients.store');
     Route::get('/{client}/edit', 'ClientController@edit')->name('clients.edit');
-    Route::post('/{client}', 'ClientController@update')->name('clients.update');
+    Route::put('/{client}', 'ClientController@update')->name('clients.update');
     Route::delete('/{client}', 'ClientController@destroy')->name('clients.destroy');
 
     Route::post('/{client}/credentials', 'ClientCredentialController@store')->name('clients_credentials.store');
@@ -44,8 +44,9 @@ Route::group([
     ], function () {
         Route::get('subclients', 'SubclientController@index')->name('subclients.index');
         Route::get('subclients/create', 'SubclientController@create')->name('subclients.create');
-        Route::get('subclients/{subclient}', 'SubclientController@edit')->name('subclients.edit');
         Route::post('subclients', 'SubclientController@store')->name('subclients.store');
+        Route::get('subclients/{subclient}', 'SubclientController@edit')->name('subclients.edit');
+        Route::put('subclients/{subclient}', 'SubclientController@update')->name('subclients.update');
         
         Route::get('subclients/{subclient}/analytics', 'SubclientAnalyticController@index')->name('subclients_analytics.index');
         Route::post('subclients/{subclient}/analytics/filter', 'SubclientAnalyticFilterController@update')->name('subclients_analytics_filter.update');
