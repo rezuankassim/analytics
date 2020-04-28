@@ -133,7 +133,7 @@ class Analytic extends Component
             $chart->labels($data['labels']);
             $chart->dataset('', 'doughnut', $data['data'])->backgroundColor(['#68d391', '#fc8181', '#f6ad55', '#f6e05e', '#4fd1c5', '#63b3ed', '#7f9cf5', '#b794f4', '#f687b3']);
         } else {
-            $chart->dataset('', 'line', []);
+            $chart->dataset('', 'doughnut', []);
         }
 
         $chart->displayAxes(false);

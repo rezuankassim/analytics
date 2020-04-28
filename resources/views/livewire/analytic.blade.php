@@ -11,27 +11,23 @@
         </div>
     </div>
     <div class="flex">
-        @if ($user_analytic->contains('name', 'get active users by platform'))
-            <div class="my-4 px-4 py-4 flex-grow bg-white shadow rounded" wire:ignore>
-                <div class="header">
-                    <h2 class="text-gray-700 font-lg font-semibold tracking-wider">Active Users by Platform</h2>
-                </div>
-                <div class="content">
-                    {{ $activeUsersByPlatformChart->container() }}
-                </div>
+        <div class="my-4 px-4 py-4 flex-grow bg-white shadow rounded" wire:ignore @if (!$user_analytic->contains('name', 'get active users by platform')) hidden @endif>
+            <div class="header">
+                <h2 class="text-gray-700 font-lg font-semibold tracking-wider">Active Users by Platform</h2>
             </div>
-        @endif
-    
-        @if ($user_analytic->contains('name', 'get all event name with event count'))
-            <div class="my-4 px-4 py-4 ml-3 flex-1 bg-white shadow rounded" wire:ignore>
-                <div class="header">
-                    <h2 class="text-gray-700 font-lg font-semibold tracking-wider">Event Count by Users</h2>
-                </div>
-                <div class="content">
-                    {{ $allEventWithEventCountChart->container() }}
-                </div>
+            <div class="content">
+                {{ $activeUsersByPlatformChart->container() }}
             </div>
-        @endif
+        </div>
+        
+        <div class="my-4 px-4 py-4 ml-3 flex-1 bg-white shadow rounded" wire:ignore @if (!$user_analytic->contains('name', 'get all event name with event count')) hidden @endif>
+            <div class="header">
+                <h2 class="text-gray-700 font-lg font-semibold tracking-wider">Event Count by Users</h2>
+            </div>
+            <div class="content">
+                {{ $allEventWithEventCountChart->container() }}
+            </div>
+        </div>
     </div>
 
     <div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center" x-show.transition.opacity="isOpen">
@@ -90,17 +86,21 @@
                 let activeUsersByPlatform = {!! $activeUsersByPlatformChart->id !!};
                 let allEventWithEventCountChart = {!! $allEventWithEventCountChart->id !!};
                 let chartData = JSON.parse(data)
-
-                activeUsersByPlatform.data.labels = chartData.activeUsersByPlatform.labels
-                chartData.activeUsersByPlatform.datasets.forEach((value, index) => {
-                    activeUsersByPlatform.data.datasets[index].label = value.label
-                    activeUsersByPlatform.data.datasets[index].data = value.data
-                })
-                activeUsersByPlatform.update()
-
-                allEventWithEventCountChart.data.labels = chartData.allEventWithEventCount.labels
-                allEventWithEventCountChart.data.datasets[0].data = chartData.allEventWithEventCount.data
-                allEventWithEventCountChart.update()
+                
+                if (chartData.hasOwnProperty('activeUsersByPlatform')) {
+                    activeUsersByPlatform.data.labels = chartData.activeUsersByPlatform.labels
+                    chartData.activeUsersByPlatform.datasets.forEach((value, index) => {
+                        activeUsersByPlatform.data.datasets[index].label = value.label
+                        activeUsersByPlatform.data.datasets[index].data = value.data
+                    })
+                    activeUsersByPlatform.update()
+                }
+                
+                if (chartData.hasOwnProperty('allEventWithEventCount')) {
+                    allEventWithEventCountChart.data.labels = chartData.allEventWithEventCount.labels
+                    allEventWithEventCountChart.data.datasets[0].data = chartData.allEventWithEventCount.data
+                    allEventWithEventCountChart.update()
+                }
             })
         })
     </script>

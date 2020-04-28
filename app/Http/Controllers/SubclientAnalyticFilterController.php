@@ -19,6 +19,8 @@ class SubclientAnalyticFilterController extends Controller
             return str_replace('_', ' ', $key);
         })->flatten(1)->toArray())->get();
 
+        $user->analyticPreferences()->where('filterable_type', get_class($subclient))->where('filterable_id', $subclient->id)->delete();
+
         foreach($analytics as $analytic) {
             $user->analyticPreferences()->create([
                 'analytic_id' => $analytic->id,
