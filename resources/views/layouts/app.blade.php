@@ -62,7 +62,7 @@
                         <div class="flex justify-end bg-white px-4 py-2 shadow-lg">
                             <div class="relative" x-data="{ isOpen: false }">
                                 <a href="#" @click.prevent="isOpen = !isOpen">
-                                    <img src="{{ asset('storage/uploads/avatars/img_0222.jpg') }}" alt="avatar" class="rounded-full h-8 w-8 object-cover">
+                                    <img src="{{ asset('/storage/uploads/avatars/img_0222.jpg') }}" alt="avatar" class="rounded-full h-8 w-8 object-cover">
                                 </a>
 
                                 <div x-show="isOpen" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg z-20">
