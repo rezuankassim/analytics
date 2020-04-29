@@ -22,7 +22,7 @@ class ClientTable extends Component
     public function render()
     {
         return view('livewire.client-table', [
-            'clients' => Client::where('name', 'like', '%'.$this->search.'%')->paginate($this->perPage)
+            'clients' => Client::where('name', 'like', '%' . $this->search . '%')->paginate($this->perPage)
         ]);
     }
 

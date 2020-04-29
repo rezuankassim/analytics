@@ -2,14 +2,14 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use RezuanKassim\BQAnalytic\Traits\hasAnalyticPreferences;
 
 class User extends Authenticatable
 {
-    use Notifiable, hasAnalyticPreferences;
+    use Notifiable;
+    use hasAnalyticPreferences;
 
     /**
      * The attributes that are mass assignable.

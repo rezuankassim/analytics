@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Client;
 use App\Subclient;
-use Illuminate\Http\Request;
 
 class SubclientAnalyticController extends Controller
 {

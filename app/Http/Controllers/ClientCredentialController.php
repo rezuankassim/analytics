@@ -21,8 +21,8 @@ class ClientCredentialController extends Controller
 
         $file_path = $request->file('credential')->store('analytics');
 
-        if (Storage::exists(storage_path('app/'.$client->google_credential))) {
-            Storage::delete(storage_path('app/'.$client->google_credential));
+        if (Storage::exists(storage_path('app/' . $client->google_credential))) {
+            Storage::delete(storage_path('app/' . $client->google_credential));
         }
 
         $client->update([

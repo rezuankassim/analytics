@@ -2,8 +2,6 @@
 
 namespace App\Providers;
 
-use App\Client;
-use App\Observers\ClientObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

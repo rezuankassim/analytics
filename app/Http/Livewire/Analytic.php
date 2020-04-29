@@ -21,7 +21,7 @@ class Analytic extends Component
     public function mount(Client $client, ?Subclient $subclient)
     {
         $this->client = $client;
-        $this->date = Carbon::yesterday()->format('d/m/Y').' - '.Carbon::yesterday()->format('d/m/Y');
+        $this->date = Carbon::yesterday()->format('d/m/Y') . ' - ' . Carbon::yesterday()->format('d/m/Y');
         $this->start_date = Carbon::yesterday()->format('Ymd');
         $this->end_date = Carbon::yesterday()->format('Ymd');
         $this->subclient = $subclient;
@@ -119,7 +119,7 @@ class Analytic extends Component
                 ]
             ]
         ]);
-    
+
         return $chart;
     }
 
@@ -137,7 +137,7 @@ class Analytic extends Component
         }
 
         $chart->displayAxes(false);
-        
+
         return $chart;
     }
 }

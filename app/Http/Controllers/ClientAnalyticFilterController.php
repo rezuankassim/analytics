@@ -20,7 +20,7 @@ class ClientAnalyticFilterController extends Controller
 
         $user->analyticPreferences()->where('filterable_type', get_class($client))->where('filterable_id', $client->id)->delete();
 
-        foreach($analytics as $analytic) {
+        foreach ($analytics as $analytic) {
             $user->analyticPreferences()->create([
                 'analytic_id' => $analytic->id,
                 'filterable_type' => get_class($client),

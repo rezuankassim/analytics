@@ -47,11 +47,8 @@ Route::group([
         Route::post('subclients', 'SubclientController@store')->name('subclients.store');
         Route::get('subclients/{subclient}', 'SubclientController@edit')->name('subclients.edit');
         Route::put('subclients/{subclient}', 'SubclientController@update')->name('subclients.update');
-        
+
         Route::get('subclients/{subclient}/analytics', 'SubclientAnalyticController@index')->name('subclients_analytics.index');
         Route::post('subclients/{subclient}/analytics/filter', 'SubclientAnalyticFilterController@update')->name('subclients_analytics_filter.update');
     });
 });
-
-
-
