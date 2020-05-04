@@ -2952,12 +2952,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rezuankassim/bqanalytic.git",
-                "reference": "1369fea08a93ab258774e25905d229d1f1781277"
+                "reference": "a98d6e4fa32842d3a52ed667a069a1fb8ee05f73"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rezuankassim/bqanalytic/zipball/1369fea08a93ab258774e25905d229d1f1781277",
-                "reference": "1369fea08a93ab258774e25905d229d1f1781277",
+                "url": "https://api.github.com/repos/rezuankassim/bqanalytic/zipball/a98d6e4fa32842d3a52ed667a069a1fb8ee05f73",
+                "reference": "a98d6e4fa32842d3a52ed667a069a1fb8ee05f73",
                 "shasum": ""
             },
             "require": {
@@ -3003,7 +3003,7 @@
                 "BQAnalytic",
                 "laravel"
             ],
-            "time": "2020-05-04T07:51:27+00:00"
+            "time": "2020-05-04T08:45:35+00:00"
         },
         {
             "name": "rize/uri-template",
