@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="w-2/3 ml-6">
-                        <div>
+                        <div class="border-b border-gray-300 pb-4">
                             <div class="flex">
                                 <div class="w-1/3">
                                     <label for="name" class="mb-2 block text-sm leading-5 font-medium text-gray-700">Name</label>
@@ -103,14 +103,30 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="pt-2 text-right">
+                            <button class="mt-2 px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600">Submit</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="px-6 py-1 overflow-auto text-right">
-            <button class="mt-2 px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600">Submit</button>
-        </div>
     </form>
+
+    <div class="px-6 py-2 overflow-auto" x-data="{ isOpen: false }">
+        <div class="min-w-full px-4 py-2 bg-white rounded-md shadow-md border-t-4 border-red-500">
+            <div class="content flex py-4">
+                <div class="w-3/4">
+                    <h2 class="mb-2 text-xl font-semibold">Delete</h2>
+
+                    <div class="mb-2 tracking-tight">
+                        This will delete the app
+                    </div>
+                </div>
+
+                @livewire('delete-modal', [ 'model' => $app, 'deleteRoute' => route('apps.destroy', ['app' => $app->id])])
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

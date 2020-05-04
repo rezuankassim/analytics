@@ -47,6 +47,7 @@ Route::group([
     Route::post('/', 'ProjectController@store')->name('projects.store');
     Route::get('/{project}/edit', 'ProjectController@edit')->name('projects.edit');
     Route::put('/{project}', 'ProjectController@update')->name('projects.update');
+    Route::delete('/{project}', 'ProjectController@destroy')->name('projects.destroy');
 
     Route::put('/{project}/credentials', 'ProjectCredentialController@update')->name('projects_credentials.update');
 });
@@ -60,4 +61,5 @@ Route::group([
     Route::post('/', 'AppController@store')->name('apps.store');
     Route::get('/{app}/edit', 'AppController@edit')->name('apps.edit');
     Route::put('/{app}', 'AppController@update')->name('apps.update');
+    Route::delete('/{app}', 'AppController@destroy')->name('apps.destroy');
 });

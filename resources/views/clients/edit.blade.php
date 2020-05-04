@@ -87,7 +87,7 @@
                     </div>
                 </div>
 
-                @livewire('delete-modal', [ 'client' => $client ])
+                @livewire('delete-modal', [ 'model' => $client, 'deleteRoute' => route('clients.destroy', ['client' => $client->id])])
             </div>
         </div>
     </div>

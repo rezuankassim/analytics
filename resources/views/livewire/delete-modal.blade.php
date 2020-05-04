@@ -22,16 +22,16 @@
                     </div>
 
                     <div class="text-gray-600 tracking-tight my-2">
-                        Please type <span class="text-red-500 font-semibold">{{ $clientName }}</span> to confirm.
+                        Please type <span class="text-red-500 font-semibold">{{ $model->name }}</span> to confirm.
                     </div>
 
-                    <form action="{{ route('clients.destroy', $clientId) }}" method="POST">
+                    <form action="{{ $deleteRoute }}" method="POST">
                         @method('DELETE')
                         @csrf
-                        <input type="text" name="name" wire:model.debounce.500ms="name" class="my-2 form-input bg-gray-200 block border border-transparent w-full pl-7 pr-12 text-sm leading-5 focus:bg-white focus:outline-none focus:shadow-none focus:border-green-500">
+                        <input type="text" name="name" wire:model.debounce.500ms="name" @keydown.enter.prevent " class="my-2 form-input bg-gray-200 block border border-transparent w-full pl-7 pr-12 text-sm leading-5 focus:bg-white focus:outline-none focus:shadow-none focus:border-green-500">
 
                     
-                        <button class="mb-2 w-full px-4 py-2 bg-red-500 text-white rounded @if($nameValid) hover:bg-red-700 @else cursor-not-allowed opacity-50 @endif"
+                        <button type="submit" class="mb-2 w-full px-4 py-2 bg-red-500 text-white rounded @if($nameValid) hover:bg-red-700 @else cursor-not-allowed opacity-50 @endif"
                             @if(!$nameValid) disabled @endif>Delete</button>
                     </form>
                 </div>

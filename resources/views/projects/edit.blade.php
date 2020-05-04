@@ -133,6 +133,22 @@
             </div>
         </div>
     </div>
+
+    <div class="px-6 py-2 overflow-auto" x-data="{ isOpen: false }">
+        <div class="min-w-full px-4 py-2 bg-white rounded-md shadow-md border-t-4 border-red-500">
+            <div class="content flex py-4">
+                <div class="w-3/4">
+                    <h2 class="mb-2 text-xl font-semibold">Delete</h2>
+
+                    <div class="mb-2 tracking-tight">
+                        This will delete the project and all of the data of the project
+                    </div>
+                </div>
+
+                @livewire('delete-modal', [ 'model' => $project, 'deleteRoute' => route('projects.destroy', ['project' => $project->id])])
+            </div>
+        </div>
+    </div>
 </div>
 
 @endsection

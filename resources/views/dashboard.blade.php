@@ -25,7 +25,7 @@
                     </div>
                     
                     <div class="px-4 py-2 bg-gray-300 text-gray-600 flex justify-center rounded-b-md">
-                        <a href="" class="flex items-center hover:text-gray-800">
+                        <a href="{{ route('clients.edit', ['client' => $client->id]) }}" class="flex items-center hover:text-gray-800">
                             <span>View Client</span>
 
                             <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>

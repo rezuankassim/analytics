@@ -6,25 +6,30 @@ use Livewire\Component;
 
 class DeleteModal extends Component
 {
-    public $clientName;
-    public $clientId;
-    public $isOpen;
+    public $model;
     public $name;
     public $nameValid = false;
+    public $deleteRoute;
 
-    public function mount($client)
+    public function mount($model, $deleteRoute)
     {
-        $this->clientId = $client->id;
-        $this->clientName = $client->name;
+        $this->model = $model;
+        $this->deleteRoute = $deleteRoute;
     }
 
     public function updatedName()
     {
-        if ($this->name === $this->clientName) {
+        if ($this->name === $this->model->name) {
             $this->nameValid = true;
         } else {
             $this->nameValid = false;
         }
+    }
+
+    public function clear()
+    {
+        $this->name = null;
+        $this->nameValid = false;
     }
 
     public function render()

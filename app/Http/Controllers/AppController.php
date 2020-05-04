@@ -68,4 +68,15 @@ class AppController extends Controller
 
         return redirect()->route('apps.edit', ['app' => $app->id])->with('success', 'The app has been updated');
     }
+
+    public function destroy(Request $request, App $app)
+    {
+        if ($request->name === $app->name) {
+            $app->delete();
+
+            return redirect()->route('apps.index')->with('success', 'The app has been deleted');
+        }
+
+        return redirect()->route('apps.edit', ['app' => $app->id]);
+    }
 }

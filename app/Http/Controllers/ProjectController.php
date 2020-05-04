@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use RezuanKassim\BQAnalytic\Models\BQData;
+use RezuanKassim\BQAnalytic\Models\BQTable;
 
 class ProjectController extends Controller
 {
@@ -26,8 +30,8 @@ class ProjectController extends Controller
     {
         $request->validate([
             'name' => 'required|min:3|unique:projects,name',
-            'google_project_id' => 'required',
-            'google_bq_dataset_name' => 'required',
+            'google_project_id' => 'required|unique:projects,google_project_id',
+            'google_bq_dataset_name' => 'required|unique:projects,google_bq_dataset_name',
             'credential' => 'required|file|mimetypes:application/json'
         ]);
 
@@ -64,5 +68,29 @@ class ProjectController extends Controller
         ]);
 
         return redirect()->route('projects.edit', ['project' => $project->id])->with('success', 'The project has been updated');
+    }
+
+    public function destroy(Request $request, Project $project)
+    {
+        if ($request->name === $project->name) {
+            BQTable::where('bqproject_name', $project->name)->delete();
+            BQData::where('dataset', $project->google_bq_dataset_name)->delete();
+
+            $project->bqapps->each(function ($value) {
+                $value->update([
+                    'project_id' => null
+                ]);
+            });
+            
+            if (Storage::exists($project->google_credential_path)) {
+                Storage::delete($project->google_credential_path);
+            }
+
+            $project->delete();
+
+            return redirect()->route('projects.index')->with('success', 'The project has been deleted');
+        }
+
+        return redirect()->route('projects.edit', ['project' => $project->id]);
     }
 }
