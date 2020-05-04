@@ -15,14 +15,11 @@ class CreateClientsTable extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('description')->nullable();
-            $table->string('display_name')->nullable();
-            $table->text('google_credential')->nullable();
-            $table->string('google_credential_file_name')->nullable();
-            $table->string('google_project_id')->nullable();
-            $table->string('google_bq_dataset_name')->nullable();
-            $table->boolean('status')->default(0);
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->timestamp('last_logged_at')->nullable();
+            $table->string('password');
             $table->timestamps();
         });
     }

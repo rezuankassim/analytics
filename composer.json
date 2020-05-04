@@ -17,7 +17,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "livewire/livewire": "^1.0",
-        "rezuankassim/bqanalytic": "^1.4"
+        "rezuankassim/bqanalytic": "dev-develop"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

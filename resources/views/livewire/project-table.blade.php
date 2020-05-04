@@ -33,10 +33,7 @@
                             Name
                         </th>
                         <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                            Email
-                        </th>
-                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                            Email Verified At
+                            Google Project ID
                         </th>
                         <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                             Created At
@@ -45,37 +42,31 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white">
-                    @if ($clients->count() === 0)
+                    @if ($projects->count() === 0)
                         <tr>
-                            <td class="text-center px-6 py-4 whitespace-no-wrap border-b border-gray-200" colspan="5">
+                            <td class="text-center px-6 py-4 whitespace-no-wrap border-b border-gray-200" colspan="4">
                                 <span class="text-sm leading-5 font-medium text-green-500">Opps!</span>
                                 
                                 <span class="text-sm leading-5 text-gray-700">Looks like there is no record for you...</span>
                             </td>
                         </tr>
                     @else
-                        @foreach ($clients as $client)
+                        @foreach ($projects as $project)
                             <tr class="even:bg-gray-100">
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-700">
-                                    {{ $client->name }}
+                                    {{ $project->name }}
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-700">
-                                    {{ $client->email }}
+                                    {{ $project->google_project_id }}
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-700">
-                                    {{ $client->email_verified_at->format('M d, Y') }}
-                                </td>
-
-                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-700">
-                                    {{ $client->created_at->format('M d, Y') }}
+                                    {{ $project->created_at->format('M d, Y') }}
                                 </td>
 
                                 <td class="w-32 px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-                                    <a href="{{ route('clients.edit', $client->id) }}" class="text-green-500 hover:text-green-700">Edit</a>
-
-                                    <a href="{{ route('clients_apps.index', ['client' => $client->id]) }}" class="ml-2 text-green-500 hover:text-green-700">Apps</a>
+                                    <a href="{{ route('projects.edit', $project->id) }}" class="text-green-500 hover:text-green-700">Edit</a>
 
                                     {{-- <a href="{{ route('subclients.index', $client->id) }}" class="ml-2 text-green-500 hover:text-green-700">Subclient</a>
                                     
@@ -100,7 +91,7 @@
                 </a>
             </div>
             <div class="flex-1 flex items-center justify-between">
-                {{ $clients->links() }}
+                {{ $projects->links() }}
             </div>
         </div>
     </div>

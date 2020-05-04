@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubclientsTable extends Migration
+class CreateProjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateSubclientsTable extends Migration
      */
     public function up()
     {
-        Schema::create('subclients', function (Blueprint $table) {
+        Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description')->nullable();
-            $table->string('app_id');
-            $table->boolean('status')->default(0);
-            $table->unsignedBigInteger('client_id');
-            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
+            $table->string('google_project_id');
+            $table->string('google_bq_dataset_name');
+            $table->string('google_credential_path');
+            $table->string('google_credential_file_name');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ class CreateSubclientsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subclients');
+        Schema::dropIfExists('projects');
     }
 }

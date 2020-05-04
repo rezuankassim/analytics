@@ -14,11 +14,17 @@
                 </div>
                 <div class="modal-body px-4 py-2">
                     <div class="text-gray-600 tracking-tight">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit inventore nulla eius quam alias eligendi ea repellat? Dicta, quis amet?
+                        This will delete the client and all of the apps belong to the client.
                     </div>
+                    
+                    <div class="mt-2 text-red-600 tracking-tight">
+                        This action is not reversible.
+                    </div>
+
                     <div class="text-gray-600 tracking-tight my-2">
                         Please type <span class="text-red-500 font-semibold">{{ $clientName }}</span> to confirm.
                     </div>
+
                     <form action="{{ route('clients.destroy', $clientId) }}" method="POST">
                         @method('DELETE')
                         @csrf

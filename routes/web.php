@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::redirect('/', '/login', 301)->name('welcome');
 
 Auth::routes();
 
@@ -33,22 +31,33 @@ Route::group([
     Route::put('/{client}', 'ClientController@update')->name('clients.update');
     Route::delete('/{client}', 'ClientController@destroy')->name('clients.destroy');
 
-    Route::post('/{client}/credentials', 'ClientCredentialController@store')->name('clients_credentials.store');
+    Route::get('/{client}/apps', 'ClientAppController@index')->name('clients_apps.index');
 
     Route::get('/{client}/analytics', 'ClientAnalyticController@index')->name('clients_analytics.index');
-
     Route::post('/{client}/analytics/filter', 'ClientAnalyticFilterController@update')->name('clients_analytics_filter.update');
+});
 
-    Route::group([
-        'prefix' => 'clients/{client}'
-    ], function () {
-        Route::get('subclients', 'SubclientController@index')->name('subclients.index');
-        Route::get('subclients/create', 'SubclientController@create')->name('subclients.create');
-        Route::post('subclients', 'SubclientController@store')->name('subclients.store');
-        Route::get('subclients/{subclient}', 'SubclientController@edit')->name('subclients.edit');
-        Route::put('subclients/{subclient}', 'SubclientController@update')->name('subclients.update');
 
-        Route::get('subclients/{subclient}/analytics', 'SubclientAnalyticController@index')->name('subclients_analytics.index');
-        Route::post('subclients/{subclient}/analytics/filter', 'SubclientAnalyticFilterController@update')->name('subclients_analytics_filter.update');
-    });
+Route::group([
+    'middleware' => ['auth'],
+    'prefix' => 'projects',
+], function () {
+    Route::get('/', 'ProjectController@index')->name('projects.index');
+    Route::get('/create', 'ProjectController@create')->name('projects.create');
+    Route::post('/', 'ProjectController@store')->name('projects.store');
+    Route::get('/{project}/edit', 'ProjectController@edit')->name('projects.edit');
+    Route::put('/{project}', 'ProjectController@update')->name('projects.update');
+
+    Route::put('/{project}/credentials', 'ProjectCredentialController@update')->name('projects_credentials.update');
+});
+
+Route::group([
+    'middleware' => ['auth'],
+    'prefix' => 'apps',
+], function () {
+    Route::get('/', 'AppController@index')->name('apps.index');
+    Route::get('/create', 'AppController@create')->name('apps.create');
+    Route::post('/', 'AppController@store')->name('apps.store');
+    Route::get('/{app}/edit', 'AppController@edit')->name('apps.edit');
+    Route::put('/{app}', 'AppController@update')->name('apps.update');
 });

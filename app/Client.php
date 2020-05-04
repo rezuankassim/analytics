@@ -3,19 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use RezuanKassim\BQAnalytic\Traits\hasClientFromDB;
-use RezuanKassim\BQAnalytic\Traits\hasMorphClient;
-use RezuanKassim\BQAnalytic\Traits\hasSubclient;
+use RezuanKassim\BQAnalytic\Traits\BQClient\hasBQClient;
 
 class Client extends Model
 {
-    use hasClientFromDB;
-    use hasSubclient;
-    use hasMorphClient;
-
-    protected $guarded = ['created_at', 'updated_at', 'id'];
+    use hasBQClient;
 
     protected $casts = [
-        'status' => 'boolean'
+        'email_verified_at' => 'datetime',
+        'last_logged_at' => 'datetime'
     ];
+
+    protected $guarded = [];
 }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Client;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ClientController extends Controller
 {
@@ -41,26 +43,19 @@ class ClientController extends Controller
     {
         $request->validate([
             'name' => 'required|min:3',
-            'displayName' => 'required|min:3',
-            'projectId' => 'required',
-            'bqDataset' => 'required',
-            'credential' => 'required|file|mimetypes:application/json'
+            'email' => 'required|email',
+            'password' => 'required|min:8'
         ]);
 
-        $file_path = $request->file('credential')->store('analytics');
 
         Client::create([
             'name' => $request->name,
-            'display_name' => $request->displayName,
-            'description' => $request->description,
-            'google_project_id' => $request->projectId,
-            'google_bq_dataset_name' => $request->bqDataset,
-            'google_credential' => $file_path,
-            'google_credential_file_name' => $request->file('credential')->getClientOriginalName(),
-            'status' => true,
+            'email' => $request->email,
+            'email_verified_at' => Carbon::now(),
+            'password' => Hash::make($request->password)
         ]);
 
-        return redirect()->route('clients.index')->with('success', 'A record has been created');
+        return redirect()->route('clients.index')->with('success', 'A client has been created');
     }
 
     /**
@@ -85,16 +80,17 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        $validated = $request->validate([
-            'name' => 'sometimes|required|min:3',
-            'display_name' => 'sometimes|required|min:3',
-            'google_project_id' => 'sometimes|required',
-            'google_bq_dataset_name' => 'sometimes|required',
+        $request->validate([
+            'name' => 'required|min:3',
+            'email' => 'required|email',
         ]);
 
-        $client->update($validated);
+        $client->update([
+            'name' => $request->name,
+            'email' => $request->email
+        ]);
 
-        return redirect()->route('clients.edit', $client->id)->with('success', 'The record has been updated');
+        return redirect()->route('clients.edit', $client->id)->with('success', 'The client has been updated');
     }
 
     /**
@@ -106,9 +102,11 @@ class ClientController extends Controller
     public function destroy(Request $request, Client $client)
     {
         if ($request->name === $client->name) {
+            $client->bqapps()->delete();
+
             $client->delete();
         }
 
-        return redirect()->route('clients.index')->with('success', 'The record has been deleted');
+        return redirect()->route('clients.index')->with('success', 'The client has been deleted');
     }
 }

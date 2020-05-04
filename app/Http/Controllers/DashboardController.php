@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Client;
+use Carbon\Carbon;
+use RezuanKassim\BQAnalytic\Models\BQTable;
+
 class DashboardController extends Controller
 {
     /**
@@ -21,6 +25,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        return view('dashboard', [
+            'clients' => Client::whereBetween('last_logged_at', [Carbon::yesterday()->endOfDay(), Carbon::today()->endOfDay()])->get()
+        ]);
     }
 }

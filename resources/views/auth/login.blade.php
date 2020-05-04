@@ -4,7 +4,11 @@
 <div class="flex items-center justify-center bg-gray-50">
     <div class="max-w-md w-full">
         <div>
-            <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
+            <h2 class="mt-3 text-center text-3xl leading-9 font-extrabold text-gray-900">
+                <span class="text-green-500">Convep</span>
+                <span>Analytics</span>
+            </h2>
+            <h2 class="mt-3 text-center text-xl leading-9 font-semibold text-gray-700">
                 {{ __('auth.signInToYourAccount') }}
             </h2>
         </div>

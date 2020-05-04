@@ -4,12 +4,11 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use RezuanKassim\BQAnalytic\Traits\hasAnalyticPreferences;
+use RezuanKassim\BQAnalytic\Traits\BQUser\hasAnalyticPreferences;
 
 class User extends Authenticatable
 {
-    use Notifiable;
-    use hasAnalyticPreferences;
+    use Notifiable, hasAnalyticPreferences;
 
     /**
      * The attributes that are mass assignable.

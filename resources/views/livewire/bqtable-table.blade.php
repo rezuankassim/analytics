@@ -30,67 +30,60 @@
                 <thead class="bg-gray-200"> 
                     <tr>
                         <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                            Name
+                            Date
                         </th>
                         <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                            Email
+                            Project
                         </th>
                         <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                            Email Verified At
+                            Status
                         </th>
                         <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                             Created At
                         </th>
-                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
                     </tr>
                 </thead>
                 <tbody class="bg-white">
-                    @if ($clients->count() === 0)
-                        <tr>
-                            <td class="text-center px-6 py-4 whitespace-no-wrap border-b border-gray-200" colspan="5">
-                                <span class="text-sm leading-5 font-medium text-green-500">Opps!</span>
-                                
-                                <span class="text-sm leading-5 text-gray-700">Looks like there is no record for you...</span>
-                            </td>
-                        </tr>
-                    @else
-                        @foreach ($clients as $client)
-                            <tr class="even:bg-gray-100">
-                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-700">
-                                    {{ $client->name }}
-                                </td>
+                    @forelse ($bqtables as $bqtable)
+                    <tr class="even:bg-gray-100">
+                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-700">
+                            {{ $bqtable->table_date->format('d/m/Y') }}
+                        </td>
 
-                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-700">
-                                    {{ $client->email }}
-                                </td>
+                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-700">
+                            {{ $bqtable->bqproject_name }}
+                        </td>
 
-                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-700">
-                                    {{ $client->email_verified_at->format('M d, Y') }}
-                                </td>
+                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-700">
+                            @if ($bqtable->status)
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-200 text-green-800">
+                                Success
+                            </span>
+                            @else
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-200 text-red-800">
+                                Failed
+                            </span>
+                            @endif
+                        </td>
 
-                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-700">
-                                    {{ $client->created_at->format('M d, Y') }}
-                                </td>
-
-                                <td class="w-32 px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-                                    <a href="{{ route('clients.edit', $client->id) }}" class="text-green-500 hover:text-green-700">Edit</a>
-
-                                    <a href="{{ route('clients_apps.index', ['client' => $client->id]) }}" class="ml-2 text-green-500 hover:text-green-700">Apps</a>
-
-                                    {{-- <a href="{{ route('subclients.index', $client->id) }}" class="ml-2 text-green-500 hover:text-green-700">Subclient</a>
-                                    
-                                    @if ($client->subclient->count() == 0)
-                                        <a href="{{ route('clients_analytics.index', $client->id) }}" class="ml-2 text-green-500 hover:text-green-700">Analytics</a>
-                                    @endif --}}
-                                </td>
-                            </tr>
-                        @endforeach
-                    @endif
+                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-700">
+                            {{ $bqtable->created_at->format('M d, Y') }}
+                        </td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td class="text-center px-6 py-4 whitespace-no-wrap border-b border-gray-200" colspan="5">
+                            <span class="text-sm leading-5 font-medium text-green-500">Opps!</span>
+                            
+                            <span class="text-sm leading-5 text-gray-700">Looks like there is no record for you...</span>
+                        </td>
+                    </tr>
+                    @endforelse
                     
                 </tbody>
             </table>
         </div>
-        <div class="bg-white pt-3 pb-1 flex items-center justify-between border-t border-gray-200">
+        <div class="pt-3 pb-1 flex items-center justify-between border-t border-gray-200">
             <div class="flex-1 flex justify-between sm:hidden">
                 <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
                     Previous
@@ -100,7 +93,7 @@
                 </a>
             </div>
             <div class="flex-1 flex items-center justify-between">
-                {{ $clients->links() }}
+                {{ $bqtables->links() }}
             </div>
         </div>
     </div>

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e070ea151881f2d36d95851a421c484e",
+    "content-hash": "9e176f243c1c6c4b5e99bec9826f03c8",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2948,16 +2948,16 @@
         },
         {
             "name": "rezuankassim/bqanalytic",
-            "version": "1.4.2",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rezuankassim/bqanalytic.git",
-                "reference": "50393ccebcfdd72c1b78a3ee11af7394d1caa156"
+                "reference": "1369fea08a93ab258774e25905d229d1f1781277"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rezuankassim/bqanalytic/zipball/50393ccebcfdd72c1b78a3ee11af7394d1caa156",
-                "reference": "50393ccebcfdd72c1b78a3ee11af7394d1caa156",
+                "url": "https://api.github.com/repos/rezuankassim/bqanalytic/zipball/1369fea08a93ab258774e25905d229d1f1781277",
+                "reference": "1369fea08a93ab258774e25905d229d1f1781277",
                 "shasum": ""
             },
             "require": {
@@ -3003,7 +3003,7 @@
                 "BQAnalytic",
                 "laravel"
             ],
-            "time": "2020-04-29T05:37:03+00:00"
+            "time": "2020-05-04T07:51:27+00:00"
         },
         {
             "name": "rize/uri-template",
@@ -6717,7 +6717,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "rezuankassim/bqanalytic": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

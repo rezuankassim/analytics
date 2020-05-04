@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire;
 
-use App\Client;
+use App\Project;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class ClientTable extends Component
+class ProjectTable extends Component
 {
     use WithPagination;
 
@@ -21,8 +21,8 @@ class ClientTable extends Component
 
     public function render()
     {
-        return view('livewire.client-table', [
-            'clients' => Client::where('name', 'like', '%' . $this->search . '%')->paginate($this->perPage)
+        return view('livewire.project-table', [
+            'projects' => Project::where('name', 'like', '%' . $this->search . '%')->paginate($this->perPage)
         ]);
     }
 
