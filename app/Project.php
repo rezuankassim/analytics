@@ -10,4 +10,8 @@ class Project extends Model
     use hasApps;
     
     protected $guarded = [];
+
+    protected $casts = [
+        'start_date' => 'date'
+    ];
 }

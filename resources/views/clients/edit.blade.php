@@ -27,7 +27,7 @@
         @method('PUT')
         <div class="px-6 py-2 overflow-auto">
             <div class="min-w-full px-4 py-2 bg-white rounded-md shadow-md border-t-4 border-green-500">
-                <div class="pb-4 content flex py-2 border-b border-gray-400">
+                <div class="content flex py-2">
                     <div class="w-1/3">
                         <h2 class="mb-2 text-xl font-semibold">Details</h2>
 
@@ -36,7 +36,7 @@
                         </div>
                     </div>
 
-                    <div class="w-2/3 ml-6">
+                    <div class="w-2/3 ml-6 border-b border-gray-300 pb-3">
                         <div>
                             <div class="flex">
                                 <div class="w-1/3">
@@ -53,7 +53,7 @@
                             </div>
 
                             <div class="flex mt-2">
-                                <div class="w-1/2 mr-2">
+                                <div class="w-1/2">
                                     <label for="email" class="mb-2 block text-sm leading-5 font-medium text-gray-700">Email</label>
     
                                     <input id="email" name="email" class="form-input bg-gray-200 block border border-transparent w-full pl-7 pr-12 text-sm leading-5 focus:bg-white focus:outline-none focus:shadow-none focus:border-green-500 @error('email') border-red-600 text-red-800 @enderror" placeholder="piedpiper@email.com" value="{{ old('email') ?? $client->email }}"/>
@@ -69,7 +69,7 @@
                     </div>
                 </div>
 
-                <div class="py-2 overflow-auto text-right">
+                <div class="py-1 overflow-auto text-right">
                     <button class="px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600">Submit</button>
                 </div>
             </div>

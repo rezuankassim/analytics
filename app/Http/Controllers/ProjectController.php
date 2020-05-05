@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use Carbon\Carbon;
 use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -40,7 +41,8 @@ class ProjectController extends Controller
             'google_project_id' => $request->google_project_id,
             'google_bq_dataset_name' => $request->google_bq_dataset_name,
             'google_credential_path' => $request->file('credential')->store('analytics'),
-            'google_credential_file_name' => $request->file('credential')->getClientOriginalName()
+            'google_credential_file_name' => $request->file('credential')->getClientOriginalName(),
+            'start_date' => Carbon::make($request->start_date)
         ]);
 
         return redirect()->route('projects.index')->with('success', 'A project has been created');
@@ -64,7 +66,8 @@ class ProjectController extends Controller
         $project->update([
             'name' => $request->name,
             'google_project_id' => $request->google_project_id,
-            'google_bq_dataset_name' => $request->google_bq_dataset_name
+            'google_bq_dataset_name' => $request->google_bq_dataset_name,
+            'start_date' => Carbon::make($request->start_date)
         ]);
 
         return redirect()->route('projects.edit', ['project' => $project->id])->with('success', 'The project has been updated');

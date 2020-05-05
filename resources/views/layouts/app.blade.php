@@ -72,7 +72,7 @@
                 </div>
 
                 <div class="flex-1 bg-gray-200 min-h-screen w-0">
-                    <div class="flex justify-end bg-white px-4 py-2 shadow-lg">
+                    <div class="flex justify-end bg-white px-4 py-2 border-b border-gray-300">
                         <div class="relative" x-data="{ isOpen: false }">
                             <a href="#" @click.prevent="isOpen = !isOpen">
                                 <img src="{{ asset('/storage/uploads/avatars/IMG_0222.JPG') }}" alt="avatar" class="rounded-full h-8 w-8 object-cover">

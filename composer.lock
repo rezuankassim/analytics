@@ -1278,16 +1278,16 @@
         },
         {
             "name": "laravel/ui",
-            "version": "v2.0.1",
+            "version": "v2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/ui.git",
-                "reference": "47a0a1dac76f5e73803c86e1f38b2c7e0ae7fa83"
+                "reference": "15368c5328efb7ce94f35ca750acde9b496ab1b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/ui/zipball/47a0a1dac76f5e73803c86e1f38b2c7e0ae7fa83",
-                "reference": "47a0a1dac76f5e73803c86e1f38b2c7e0ae7fa83",
+                "url": "https://api.github.com/repos/laravel/ui/zipball/15368c5328efb7ce94f35ca750acde9b496ab1b1",
+                "reference": "15368c5328efb7ce94f35ca750acde9b496ab1b1",
                 "shasum": ""
             },
             "require": {
@@ -1329,7 +1329,7 @@
                 "laravel",
                 "ui"
             ],
-            "time": "2020-03-03T20:16:46+00:00"
+            "time": "2020-04-29T15:06:45+00:00"
         },
         {
             "name": "league/commonmark",
@@ -2952,12 +2952,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/rezuankassim/bqanalytic.git",
-                "reference": "a98d6e4fa32842d3a52ed667a069a1fb8ee05f73"
+                "reference": "8156f1ab33f0f781b596b7013769ff7c3ca49c94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rezuankassim/bqanalytic/zipball/a98d6e4fa32842d3a52ed667a069a1fb8ee05f73",
-                "reference": "a98d6e4fa32842d3a52ed667a069a1fb8ee05f73",
+                "url": "https://api.github.com/repos/rezuankassim/bqanalytic/zipball/8156f1ab33f0f781b596b7013769ff7c3ca49c94",
+                "reference": "8156f1ab33f0f781b596b7013769ff7c3ca49c94",
                 "shasum": ""
             },
             "require": {
@@ -3003,7 +3003,7 @@
                 "BQAnalytic",
                 "laravel"
             ],
-            "time": "2020-05-04T08:45:35+00:00"
+            "time": "2020-05-05T08:26:39+00:00"
         },
         {
             "name": "rize/uri-template",

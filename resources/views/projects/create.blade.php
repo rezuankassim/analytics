@@ -64,9 +64,13 @@
                                     <div class="w-2/3">
                                         <label for="bqDataset" class="mb-2 block text-sm leading-5 font-medium text-gray-700">Big Query Dataset</label>
     
-                                        <input id="bqDataset" name="google_bq_dataset_name" class="form-input bg-gray-200 block border border-transparent w-full pl-7 pr-12 text-sm leading-5 focus:bg-white focus:outline-none focus:shadow-none focus:border-green-500 @error('bqDataset') border-red-600 text-red-800 @enderror" placeholder="analytics_123456" value="{{ old('projectId') }}"/>
-    
-                                        
+                                        <input id="bqDataset" name="google_bq_dataset_name" class="form-input bg-gray-200 block border border-transparent w-full pl-7 pr-12 text-sm leading-5 focus:bg-white focus:outline-none focus:shadow-none focus:border-green-500 @error('google_bq_dataset_name') border-red-600 text-red-800 @enderror" placeholder="analytics_123456" value="{{ old('google_bq_dataset_name') }}"/>
+                                    
+                                        @error('google_bq_dataset_name')
+                                            <span class="mt-4 text-sm font-thin text-red-600 tracking-tight" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                                 
@@ -85,6 +89,20 @@
                                         @enderror
                                     </div>
                                 </div>
+
+                                <div class="mt-2">
+                                    <div class="w-1/3">
+                                        <label for="startDate" class="mb-2 block text-sm leading-5 font-medium text-gray-700">Start Date (Optional)</label>
+
+                                        <div class="relative" x-data x-init="initDateRangePicker('startDate')">
+                                            <input type="text" x-ref="startDate" id="startDate" name="start_date" class="form-input bg-gray-200 block border border-transparent w-full pl-7 pr-12 text-sm leading-5 focus:bg-white focus:outline-none focus:shadow-none focus:border-green-500 @error('start_date') border-red-600 text-red-800 @enderror" value="{{ old('start_date') }}" placeholder="DD/MM/YYYY" value="">
+
+                                            <button type="button" @click="$refs.startDate.value = ''" class="absolute top-0 right-0 mt-2 mr-1">
+                                                <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M6 18L18 6M6 6l12 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -97,5 +115,26 @@
         </div>
     </form>
 </div>
-
 @endsection
+
+@push('scripts')
+    <script>
+        function initDateRangePicker(id) {
+            $('#'+id).daterangepicker({
+                "singleDatePicker": true,
+                "autoUpdateInput": false,
+                "locale": {
+                    "format": "DD/MM/YYYY",
+                    "cancelLabel": 'Clear'
+                },
+                "opens": "left"
+            }, function(start, end, label) {
+                this.element.val(start.format('DD/MM/YYYY'))
+            })
+
+            $('#'+id).on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('DD/MM/YYYY'));
+            });
+        }
+    </script>
+@endpush

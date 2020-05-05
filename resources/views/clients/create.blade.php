@@ -25,8 +25,8 @@
                             The details of the client
                         </div>
                     </div>
-
-                    <div class="w-2/3 ml-6">
+                    
+                    <div class="w-2/3 ml-6 border-b border-gray-300 pb-3">
                         <div>
                             <div class="flex">
                                 <div class="w-1/3">
@@ -43,7 +43,7 @@
                             </div>
 
                             <div class="flex mt-2">
-                                <div class="w-1/2 mr-2">
+                                <div class="w-2/3">
                                     <label for="email" class="mb-2 block text-sm leading-5 font-medium text-gray-700">Email</label>
     
                                     <input id="email" name="email" class="form-input bg-gray-200 block border border-transparent w-full pl-7 pr-12 text-sm leading-5 focus:bg-white focus:outline-none focus:shadow-none focus:border-green-500 @error('email') border-red-600 text-red-800 @enderror" placeholder="piedpiper@email.com" value="{{ old('email') }}"/>
@@ -54,13 +54,27 @@
                                         </span>
                                     @enderror
                                 </div>
+                            </div>
 
-                                <div class="w-1/2">
+                            <div class="flex mt-2">
+                                <div class="w-1/2 mr-2">
                                     <label for="password" class="mb-2 block text-sm leading-5 font-medium text-gray-700">Password</label>
     
-                                    <input id="password" name="password" type="password" class="form-input bg-gray-200 block border border-transparent w-full pl-7 pr-12 text-sm leading-5 focus:bg-white focus:outline-none focus:shadow-none focus:border-green-500 @error('password') border-red-600 text-red-800 @enderror" placeholder="password" value="{{ old('password') }}"/>
+                                    <input id="password" name="password" type="password" class="form-input bg-gray-200 block border border-transparent w-full pl-7 pr-12 text-sm leading-5 focus:bg-white focus:outline-none focus:shadow-none focus:border-green-500 @error('password') border-red-600 text-red-800 @enderror" placeholder="password"/>
     
                                     @error('password')
+                                        <span class="mt-4 text-sm font-thin text-red-600 tracking-tight" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
+                                <div class="w-1/2">
+                                    <label for="confirmPassword" class="mb-2 block text-sm leading-5 font-medium text-gray-700">Password Confirmation</label>
+    
+                                    <input id="confirmPassword" name="password_confirmation" type="password" class="form-input bg-gray-200 block border border-transparent w-full pl-7 pr-12 text-sm leading-5 focus:bg-white focus:outline-none focus:shadow-none focus:border-green-500 @error('password_confirmation') border-red-600 text-red-800 @enderror" placeholder="password"/>
+    
+                                    @error('password_confirmation')
                                         <span class="mt-4 text-sm font-thin text-red-600 tracking-tight" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -70,11 +84,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="px-6 py-1 overflow-auto text-right">
-            <button class="mt-2 px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600">Submit</button>
+                <div class="py-1 overflow-auto text-right">
+                    <button class="px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600">Submit</button>
+                </div>
+            </div>
         </div>
     </form>
 </div>
